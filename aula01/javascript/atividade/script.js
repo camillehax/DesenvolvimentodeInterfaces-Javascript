@@ -1,37 +1,34 @@
 
-const botao = document.getElementById("calcular");
+const botao = document.getElementById("btnCalcular");
 
 botao.addEventListener("click", function() {
 
-    const campo1 = document.getElementById("nota1");
-    const campo2 = document.getElementById("nota2");
-    const campo3 = document.getElementById("nota3");
-
+    const campo1 = document.getElementById("numero1");
+    const campo2 = document.getElementById("numero2");
     const resultado = document.getElementById("resultado");
 
-    if (
-        campo1.value === "" ||
-        campo2.value === "" ||
-        campo3.value === ""
-    ) {
-        resultado.textContent = "Erro: preencha todas as notas.";
+    if (campo1.value === "" || campo2.value === "") {
+        resultado.textContent = "Preencha os dois números.";
         return;
     }
 
-    const nota1 = Number(campo1.value);
-    const nota2 = Number(campo2.value);
-    const nota3 = Number(campo3.value);
+    const numero1 = Number(campo1.value);
+    const numero2 = Number(campo2.value);
 
-    if (
-        nota1 < 0 || nota1 > 10 ||
-        nota2 < 0 || nota2 > 10 ||
-        nota3 < 0 || nota3 > 10
-    ) {
-        resultado.textContent = "Erro: as notas devem estar entre 0 e 10.";
-        return;
-    }
+    const soma = numero1 + numero2;
+    const subtracao = numero1 - numero2;
+    const multiplicacao = numero1 * numero2;
 
-    const media = (nota1 + nota2 + nota3) / 3;
+    const divisao = numero2 === 0
+        ? "Não é possível dividir por zero."
+        : numero1 / numero2;
 
-    resultado.textContent = "Sua média é: " + media.toFixed(2);
+    resultado.innerHTML = `
+        <p>Soma: ${soma}</p>
+        <p>Subtração: ${subtracao}</p>
+        <p>Multiplicação: ${multiplicacao}</p>
+        <p>Divisão: ${divisao}</p>
+    `;
+
 });
+
